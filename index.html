@@ -901,41 +901,45 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
 }
 
 /* ============================================================
-   NAV QUICK-CONTACT (Instagram / WhatsApp)
+   NAV QUICK-CONTACT (Instagram / WhatsApp — text labels)
    ============================================================ */
 .nav-quick-contact{
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
 }
-.quick-contact-btn{
+.quick-contact-link{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 0.6rem 1.1rem;
+  border-radius: 100px;
   border: 1px solid rgba(18,60,50,0.22);
   color: var(--color-primary);
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s var(--ease);
-  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
-.quick-contact-btn:hover{ background: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); transform: translateY(-2px); }
-.quick-contact-btn svg{ width: 17px; height: 17px; fill: currentColor; }
+.quick-contact-link:hover{ background: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); transform: translateY(-2px); }
 .mobile-menu-inner .quick-contact-row{
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
-.mobile-menu-inner .quick-contact-row .quick-contact-btn{ width: 42px; height: 42px; }
+.mobile-menu-inner .quick-contact-row .quick-contact-link{ flex: 1 1 auto; justify-content: center; padding: 0.85rem 1.1rem; font-size: 0.85rem; }
 
 @media (max-width: 860px){
   .nav-quick-contact{ margin-right: 0.25rem; }
 }
-@media (max-width: 400px){
+@media (max-width: 480px){
   .nav-quick-contact{ gap: 0.4rem; }
-  .quick-contact-btn{ width: 34px; height: 34px; }
+  .quick-contact-link{ padding: 0.5rem 0.8rem; font-size: 0.7rem; }
 }
 
 /* ============================================================
@@ -1117,6 +1121,181 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
 }
 .cta-form .form-error.is-visible{ display: block; }
 .final-cta-actions .btn[type="button"]{ border: none; }
+
+/* ============================================================
+   THE PROGRAM (55-Day Water Fasting overview)
+   ============================================================ */
+.program-section{ background: var(--color-bg); }
+
+.program-top{
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.program-intro h2{ font-size: clamp(2rem, 3.4vw, 2.9rem); line-height: 1.15; margin-top: 0.4rem; }
+.program-intro p{ color: var(--color-text-muted); font-size: 1.05rem; margin-top: var(--space-sm); max-width: 52ch; }
+.program-highlight{
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-primary);
+  letter-spacing: 0.01em;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.program-price-card{
+  background: var(--color-white);
+  border: 1px solid rgba(198,169,107,0.35);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  text-align: center;
+  box-shadow: 0 30px 60px -35px rgba(18,60,50,0.35);
+}
+.price-card-label{
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: 0.85rem;
+}
+.price-card-amount{
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.price-card-meta{ margin-top: 0.6rem; font-size: 0.88rem; color: var(--color-text-muted); }
+
+.program-result{ text-align: center; margin: var(--space-lg) 0 0; }
+.program-result p{
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  color: var(--color-primary);
+  background: var(--color-bg-alt);
+  padding: 1rem 2.25rem;
+  border-radius: 100px;
+  border: 1px solid rgba(198,169,107,0.32);
+  max-width: 90%;
+}
+
+.program-num{
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-accent);
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.program-benefits-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: var(--space-lg);
+}
+.program-benefit{
+  padding: 1.85rem;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(23,32,28,0.07);
+}
+.program-benefit h3{ font-size: 1.3rem; margin-bottom: 0.4rem; }
+.program-benefit p{ color: var(--color-text-muted); font-size: 0.98rem; margin: 0; }
+
+.program-secondary-benefits{
+  margin: var(--space-lg) auto 0;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem 2.5rem;
+}
+.program-secondary-benefits li{
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+.program-secondary-benefits li::before{
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.program-approach-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: var(--space-lg);
+}
+.program-approach-card{
+  text-align: center;
+  padding: 2.25rem 1.75rem;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(23,32,28,0.08);
+}
+.program-approach-card h3{ font-size: 1.2rem; margin: 0.5rem 0 0.6rem; }
+.program-approach-card p{ color: var(--color-text-muted); font-size: 0.95rem; margin: 0; }
+
+.program-included-grid{
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+.program-included-grid li{
+  padding: 1.5rem 1rem;
+  background: var(--color-white);
+  border: 1px solid rgba(23,32,28,0.08);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+.program-cta{
+  text-align: center;
+  margin: var(--space-2xl) auto 0;
+  max-width: 620px;
+}
+.program-cta h3{ font-size: clamp(1.6rem, 3vw, 2.1rem); }
+.program-cta p{ color: var(--color-text-muted); margin-top: 0.75rem; font-size: 1.02rem; }
+.program-cta .btn{ margin-top: var(--space-md); }
+.program-cta-phone{ margin-top: 1.1rem; font-weight: 700; color: var(--color-primary); }
+.program-cta-slots{
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+@media (max-width: 1024px){
+  .program-top{ grid-template-columns: 1fr; }
+  .program-price-card{ max-width: 360px; margin: 0 auto; }
+  .program-approach-grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 860px){
+  .program-benefits-grid{ grid-template-columns: 1fr; }
+  .program-secondary-benefits{ grid-template-columns: 1fr; }
+  .program-included-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px){
+  .program-included-grid{ grid-template-columns: 1fr; }
+}
 </style>
 
 </head>
@@ -1143,13 +1322,9 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
     <div class="nav-cta">
       <div class="nav-quick-contact">
         <!-- SOCIAL_PLACEHOLDER: replace with the client's real Instagram URL -->
-        <a class="quick-contact-btn" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer" aria-label="Message us on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33Zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3.1 3.1 0 0 0-.73-1.13 3.1 3.1 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.23-.06-1.58-.07-4.73-.07Zm0 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1.8a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Zm5.7-1.97a1.29 1.29 0 1 1-2.58 0 1.29 1.29 0 0 1 2.58 0Z"/></svg>
-        </a>
+        <a class="quick-contact-link" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer">Instagram</a>
         <!-- WHATSAPP_NUMBER_PLACEHOLDER: replace 91XXXXXXXXXX with the coach's real WhatsApp number (country code, no + or spaces) -->
-        <a class="quick-contact-btn nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.24A9.96 9.96 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.15c-1.6 0-3.13-.43-4.46-1.24l-.32-.19-3.12.74.74-3.04-.21-.32A8.14 8.14 0 0 1 3.85 12c0-4.5 3.66-8.16 8.16-8.16S20.17 7.5 20.17 12s-3.66 8.15-8.16 8.15Zm4.48-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
-        </a>
+        <a class="quick-contact-link nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
       <a href="#enroll" class="btn btn-primary">Start Your Journey</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -1165,12 +1340,8 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       <a href="#results">Results</a>
       <a href="#faq">FAQ</a>
       <div class="quick-contact-row">
-        <a class="quick-contact-btn" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer" aria-label="Message us on Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33Zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3.1 3.1 0 0 0-.73-1.13 3.1 3.1 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.23-.06-1.58-.07-4.73-.07Zm0 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1.8a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Zm5.7-1.97a1.29 1.29 0 1 1-2.58 0 1.29 1.29 0 0 1 2.58 0Z"/></svg>
-        </a>
-        <a class="quick-contact-btn nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.24A9.96 9.96 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.15c-1.6 0-3.13-.43-4.46-1.24l-.32-.19-3.12.74.74-3.04-.21-.32A8.14 8.14 0 0 1 3.85 12c0-4.5 3.66-8.16 8.16-8.16S20.17 7.5 20.17 12s-3.66 8.15-8.16 8.15Zm4.48-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
-        </a>
+        <a class="quick-contact-link" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="quick-contact-link nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer">WhatsApp</a>
       </div>
       <a href="#enroll" class="btn btn-primary">Start Your Journey</a>
     </div>
@@ -1282,41 +1453,118 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   </section>
 
   <!-- ============================================================
-       Is This For You?  (existing "problem" module — kept as
-       supporting context ahead of the Advantages section)
+       THE PROGRAM  (55-Day Water Fasting program overview,
+       replaces the previous "Is This For You?" section)
        ============================================================ -->
-  <section class="problem" id="about">
+  <section class="program-section" id="about">
     <div class="container">
-      <div class="problem-layout">
-        <div class="section-head reveal">
-          <span class="eyebrow">Is This For You?</span>
-          <h2>Does this sound familiar?</h2>
-          <p>Most people arrive here after trying several approaches to managing their weight, without a clear, repeatable structure to follow.</p>
+
+      <div class="program-top reveal">
+        <div class="program-intro">
+          <span class="eyebrow">The Program</span>
+          <h2>55 Days of Intermediate Water Fasting</h2>
+          <p>A structured 55-day fasting journey built around guidance, fasting protocols, personal support, mindset coaching, and progress tracking.</p>
+          <span class="program-highlight">Intermediate Water Fasting Journey</span>
         </div>
 
-        <ul class="problem-list reveal">
-          <li class="problem-item">
-            <span class="num">01</span>
-            <p>You've tried different diets but struggled to stay consistent.</p>
-          </li>
-          <li class="problem-item">
-            <span class="num">02</span>
-            <p>You're confused about how fasting actually works.</p>
-          </li>
-          <li class="problem-item">
-            <span class="num">03</span>
-            <p>You don't know how to build a fasting routine that fits your life.</p>
-          </li>
-          <li class="problem-item">
-            <span class="num">04</span>
-            <p>You want structure instead of random advice from the internet.</p>
-          </li>
-          <li class="problem-item">
-            <span class="num">05</span>
-            <p>You want a sustainable approach to managing your weight over time.</p>
-          </li>
-        </ul>
+        <div class="program-price-card">
+          <span class="price-card-label">Complete Package</span>
+          <div class="price-card-amount">₹3,999</div>
+          <div class="price-card-meta">55 Days • Full Guidance &amp; Support</div>
+        </div>
       </div>
+
+      <div class="program-result reveal">
+        <p>4–8 KG Weight Loss in Just 55 Days</p>
+      </div>
+
+      <div class="divider" style="margin: var(--space-xl) auto;"></div>
+
+      <div class="section-head center reveal">
+        <span class="eyebrow">The Goals</span>
+        <h2>What You Can Work Toward</h2>
+      </div>
+
+      <div class="program-benefits-grid reveal">
+        <div class="program-benefit">
+          <span class="program-num">01</span>
+          <h3>More Energy</h3>
+          <p>Feel active &amp; energized throughout the day.</p>
+        </div>
+        <div class="program-benefit">
+          <span class="program-num">02</span>
+          <h3>Better Focus</h3>
+          <p>Improve concentration and productivity.</p>
+        </div>
+        <div class="program-benefit">
+          <span class="program-num">03</span>
+          <h3>Mental Clarity</h3>
+          <p>Clear mind, better decisions.</p>
+        </div>
+        <div class="program-benefit">
+          <span class="program-num">04</span>
+          <h3>Inner Strength</h3>
+          <p>Build willpower and self-discipline.</p>
+        </div>
+      </div>
+
+      <ul class="program-secondary-benefits reveal">
+        <li>Improved Digestion &amp; Gut Health</li>
+        <li>Clear Skin &amp; Natural Glow</li>
+        <li>Better Sleep &amp; Stress Reduction</li>
+        <li>Boost Immunity &amp; Overall Health</li>
+        <li>More Energy &amp; Stamina</li>
+        <li>Healthy Lifestyle Habits for Life</li>
+      </ul>
+
+      <div class="divider" style="margin: var(--space-xl) auto;"></div>
+
+      <div class="section-head center reveal">
+        <span class="eyebrow">The Approach</span>
+        <h2>How the Program Works</h2>
+      </div>
+
+      <div class="program-approach-grid reveal">
+        <div class="program-approach-card">
+          <span class="program-num">01</span>
+          <h3>Zero Supplements</h3>
+          <p>No pills. No powders. Just pure fasting.</p>
+        </div>
+        <div class="program-approach-card">
+          <span class="program-num">02</span>
+          <h3>No Strict Restrictive Diets</h3>
+          <p>No starving. No complicated diets.</p>
+        </div>
+        <div class="program-approach-card">
+          <span class="program-num">03</span>
+          <h3>Fasting-Focused</h3>
+          <p>Follow the fasting approach with structured guidance.</p>
+        </div>
+      </div>
+
+      <div class="divider" style="margin: var(--space-xl) auto;"></div>
+
+      <div class="section-head center reveal">
+        <span class="eyebrow">Program Details</span>
+        <h2>What's Included</h2>
+      </div>
+
+      <ul class="program-included-grid reveal">
+        <li>55 Days Guidance</li>
+        <li>Fasting Protocols</li>
+        <li>Personal Support</li>
+        <li>Mindset Coaching</li>
+        <li>Progress Tracking</li>
+      </ul>
+
+      <div class="program-cta reveal">
+        <h3>Ready to Start Your 55-Day Journey?</h3>
+        <p>Not a diet. Not a trend. A structured approach built around consistency, patience and discipline.</p>
+        <a href="https://wa.me/917680812020?text=Hi%2C%20I%E2%80%99m%20interested%20in%20the%2055-Day%20Intermediate%20Water%20Fasting%20program." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Join Now &amp; Transform Your Life →</a>
+        <p class="program-cta-phone">Call / WhatsApp: 76808 12020</p>
+        <p class="program-cta-slots">Limited Slots Only</p>
+      </div>
+
     </div>
   </section>
 
