@@ -618,53 +618,54 @@ a:focus-visible, button:focus-visible{
 .testimonial-meta .name{ font-weight: 700; font-size: 0.92rem; }
 .testimonial-meta .detail{ font-size: 0.82rem; color: var(--color-text-muted); }
 
-.before-after{
-  margin-top: var(--space-xl);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-.ba-frame{
-  aspect-ratio: 3/4;
-  border-radius: var(--radius-md);
-  background: var(--color-white);
-  border: 1px dashed rgba(23,32,28,0.25);
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.ba-frame span{
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  font-weight: 700;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-}
-.ba-frame img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.ba-frame .tag{
-  position: absolute;
-  top: 1rem; left: 1rem;
-  background: var(--color-primary);
-  color: var(--color-white);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.7rem;
-  border-radius: 100px;
-}
-
 .results-disclaimer{
   margin-top: var(--space-lg);
   font-size: 0.85rem;
   color: var(--color-text-muted);
   text-align: center;
   font-style: italic;
+}
+
+.whatsapp-results{
+  margin-top: var(--space-xl);
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.whatsapp-result{
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(23,32,28,0.1);
+  box-shadow: 0 10px 30px rgba(23,32,28,0.06);
+}
+
+.whatsapp-result img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1000px){
+  .whatsapp-results{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px){
+  .whatsapp-results{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px){
+  .whatsapp-results{
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
 }
 
 /* ============================================================
@@ -885,7 +886,6 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   .nav-links, .nav-cta .btn{ display: none; }
   .hamburger{ display: flex; }
   .mobile-menu{ display: block; }
-  .before-after{ grid-template-columns: 1fr; }
 }
 
 @media (max-width: 620px){
@@ -1328,11 +1328,9 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   .program-included-grid{ grid-template-columns: 1fr; }
 }
 </style>
-</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-</head>
 </head>
 <body>
   
