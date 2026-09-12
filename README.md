@@ -1059,7 +1059,7 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   <!-- ============================================================
        COACH / INTRO VIDEO
        ============================================================ -->
-  <section class="coach" id="intro-video">
+  <section class="coach" id="coach.jpg">
     <div class="container coach-grid">
       <div class="coach-video reveal" role="button" tabindex="0" aria-label="Play message from your coach">
         <!-- VIDEO_PLACEHOLDER: replace with coach photo or embedded video -->
