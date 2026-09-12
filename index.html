@@ -319,9 +319,8 @@ a:focus-visible, button:focus-visible{
 }
 .hero-grid{
   display: grid;
-  grid-template-columns: 0.86fr 1fr;
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  grid-template-columns: 1fr;
+  max-width: 640px;
 }
 .hero-copy h1{
   font-size: clamp(2.6rem, 5vw, 3.85rem);
@@ -871,8 +870,6 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
    RESPONSIVE
    ============================================================ */
 @media (max-width: 1024px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .video-frame{ order: -1; }
   .problem-layout{ grid-template-columns: 1fr; gap: 2.5rem; }
   .method-intro{ grid-template-columns: 1fr; gap: 1.25rem; }
   .coach-grid{ grid-template-columns: 1fr; }
@@ -1187,16 +1184,16 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
        ============================================================ -->
   <section class="hero">
     <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true">
-      <div class="slide" style="background-image:url('images/fasting/fasting-01.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-02.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-03.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-04.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-05.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-06.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-07.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-08.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-09.jpeg')"></div>
-      <div class="slide" style="background-image:url('images/fasting/fasting-10.jpeg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-01.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-02.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-03.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-04.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-05.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-06.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-07.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-08.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-09.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-10.jpg')"></div>
       <div class="hero-overlay"></div>
     </div>
 
@@ -1217,15 +1214,6 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
         </div>
 
         <p class="hero-trust">Education · Structure · Guidance</p>
-      </div>
-
-      <div class="video-frame reveal" id="hero-video" role="button" tabindex="0" aria-label="Play 60 second introduction video">
-        <!-- VIDEO_PLACEHOLDER: replace this entire .video-frame block with a <video> or embed element -->
-        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=60" alt="Placeholder — replace with real intro video thumbnail" loading="lazy">
-        <span class="video-label">60-Second Intro</span>
-        <span class="play-btn" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 3.5v15l14-7.5-14-7.5z" fill="#123C32"/></svg>
-        </span>
       </div>
     </div>
   </section>
@@ -1268,16 +1256,16 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       <div class="coach-copy reveal">
         <span class="eyebrow">Meet Your Mentor</span>
         <h2>Before you start, meet your mentor.</h2>
-        <p class="signature">I'm Vineeth Reddy</p>
+        <p class="signature">I'm [COACH NAME].</p>
         <p>Through this program, I help people understand fasting and develop a structured approach to their weight-management journey.</p>
 
         <div class="coach-stats">
           <div>
-            <div class="stat-num">3+</div>
+            <div class="stat-num">[X]+</div>
             <div class="stat-label">Years Experience</div>
           </div>
           <div>
-            <div class="stat-num">20+</div>
+            <div class="stat-num">[X]+</div>
             <div class="stat-label">People Guided</div>
           </div>
           <div>
@@ -1285,7 +1273,7 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
             <div class="stat-label">Credential</div>
           </div>
           <div>
-            <div class="stat-num">Weight Loss</div>
+            <div class="stat-num">[Focus Area]</div>
             <div class="stat-label">Area of Expertise</div>
           </div>
         </div>
