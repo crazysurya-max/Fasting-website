@@ -433,37 +433,6 @@ a:focus-visible, button:focus-visible{
 .video-frame:hover .play-btn{ transform: translate(-50%,-50%) scale(1.08); background: var(--color-white); }
 .play-btn svg{ margin-left: 4px; }
 
-/* Wrapper so the video + social buttons move together as one hero column */
-.hero-media{ display: flex; flex-direction: column; gap: 1rem; }
-
-/* Instagram / WhatsApp buttons below the intro video */
-.hero-social{
-  display: flex;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-}
-.social-btn{
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.7rem 1.15rem;
-  border-radius: 100px;
-  border: 1px solid rgba(23,32,28,0.15);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  background: var(--color-white);
-  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.social-btn:hover{
-  border-color: var(--color-primary);
-  background: rgba(18,60,50,0.04);
-  transform: translateY(-1px);
-}
-.social-btn svg{ flex-shrink: 0; }
-.social-btn.whatsapp:hover{ border-color: #25D366; }
-.social-btn.instagram:hover{ border-color: #C6A96B; }
-
 /* ============================================================
    PROBLEM SECTION
    ============================================================ */
@@ -645,6 +614,7 @@ a:focus-visible, button:focus-visible{
   background: var(--color-bg-alt);
   border: 1px solid rgba(23,32,28,0.1);
   flex-shrink: 0;
+  object-fit: cover;
 }
 .testimonial-meta .name{ font-weight: 700; font-size: 0.92rem; }
 .testimonial-meta .detail{ font-size: 0.82rem; color: var(--color-text-muted); }
@@ -670,6 +640,13 @@ a:focus-visible, button:focus-visible{
   font-weight: 700;
   color: var(--color-text-muted);
   text-transform: uppercase;
+}
+.ba-frame img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .ba-frame .tag{
   position: absolute;
@@ -895,7 +872,7 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
    ============================================================ */
 @media (max-width: 1024px){
   .hero-grid{ grid-template-columns: 1fr; }
-  .hero-media{ order: -1; }
+  .video-frame{ order: -1; }
   .problem-layout{ grid-template-columns: 1fr; gap: 2.5rem; }
   .method-intro{ grid-template-columns: 1fr; gap: 1.25rem; }
   .coach-grid{ grid-template-columns: 1fr; }
@@ -925,7 +902,226 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   .hero-actions .watch-link{ width: auto; }
   .final-cta-actions .btn{ width: auto; padding-left: 2.2rem; padding-right: 2.2rem; }
 }
+
+/* ============================================================
+   NAV QUICK-CONTACT (Instagram / WhatsApp)
+   ============================================================ */
+.nav-quick-contact{
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-right: 0.5rem;
+}
+.quick-contact-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(18,60,50,0.22);
+  color: var(--color-primary);
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  flex-shrink: 0;
+}
+.quick-contact-btn:hover{ background: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); transform: translateY(-2px); }
+.quick-contact-btn svg{ width: 17px; height: 17px; fill: currentColor; }
+.mobile-menu-inner .quick-contact-row{
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+.mobile-menu-inner .quick-contact-row .quick-contact-btn{ width: 42px; height: 42px; }
+
+@media (max-width: 860px){
+  .nav-quick-contact{ margin-right: 0.25rem; }
+}
+@media (max-width: 400px){
+  .nav-quick-contact{ gap: 0.4rem; }
+  .quick-contact-btn{ width: 34px; height: 34px; }
+}
+
+/* ============================================================
+   HERO SLIDESHOW (scoped strictly to .hero)
+   ============================================================ */
+.hero{ position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+.hero-slideshow{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-slideshow .slide{
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.3s ease, transform 6s linear;
+}
+.hero-slideshow .slide.is-active{
+  opacity: 1;
+  transform: scale(1.16);
+  z-index: 1;
+}
+.hero-slideshow .slide.is-static{ transition: none; }
+.hero-slideshow .hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(23,32,28,0.55), rgba(23,32,28,0.72) 55%, rgba(23,32,28,0.86));
+}
+.hero .hero-grid{ position: relative; z-index: 3; }
+.hero .hero-copy h1,
+.hero .hero-copy p.lede,
+.hero .hero-trust{ color: var(--color-white); }
+.hero .hero-copy h1 em{ color: var(--color-accent-soft); }
+.hero .hero-copy h1 em::after{ background: rgba(198,169,107,0.28); }
+.hero .hero-copy p.lede{ color: rgba(247,245,239,0.82); }
+.hero .hero-trust{ color: var(--color-accent-soft); }
+.hero .watch-link{ color: var(--color-white); }
+.hero .watch-link .play-dot{ border-color: var(--color-white); }
+.hero .watch-link:hover .play-dot{ background: var(--color-white); }
+.hero .watch-link:hover .play-dot svg path{ fill: var(--color-primary); }
+
+@media (prefers-reduced-motion: reduce){
+  .hero-slideshow .slide{ transition: none; transform: none; }
+  .hero-slideshow .slide.is-active{ transform: none; }
+}
+
+/* ============================================================
+   INTRO VIDEO SECTION
+   ============================================================ */
+.intro-video-section{ background: var(--color-bg); }
+.intro-video-wrap{
+  max-width: 900px;
+  margin: 0 auto;
+}
+.intro-video-player{
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(18,60,50,0.16);
+  box-shadow: 0 40px 70px -30px rgba(18,60,50,0.35);
+  background: linear-gradient(155deg, #1C5245, #0E2B23);
+}
+.intro-video-player video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #0E2B23;
+}
+
+/* ============================================================
+   MEET YOUR MENTOR — image variant
+   ============================================================ */
+.mentor-photo{
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 30px 60px -28px rgba(18,60,50,0.4);
+}
+.mentor-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================================
+   EATING WINDOW / FASTING WINDOW
+   ============================================================ */
+.windows{ background: var(--color-primary); color: var(--color-white); }
+.windows .eyebrow{ color: var(--color-accent-soft); }
+.windows .section-head h2{ color: var(--color-white); }
+.windows .section-head p{ color: rgba(247,245,239,0.72); }
+.windows-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+.window-card{
+  background: rgba(247,245,239,0.06);
+  border: 1px solid rgba(247,245,239,0.16);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 2.25rem;
+  transition: transform 0.4s var(--ease), background 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.window-card:hover{ transform: translateY(-4px); background: rgba(247,245,239,0.1); border-color: rgba(198,169,107,0.4); }
+.window-icon{
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(198,169,107,0.16);
+  margin-bottom: 1.5rem;
+}
+.window-icon svg{ width: 26px; height: 26px; }
+.window-card h3{ color: var(--color-white); font-size: 1.7rem; margin-bottom: 0.35rem; }
+.window-time{
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-accent-soft);
+  margin-bottom: 1rem;
+  display: block;
+}
+.window-card p{ color: rgba(247,245,239,0.72); font-size: 1rem; margin: 0; }
+
+@media (max-width: 860px){
+  .windows-grid{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   FINAL CTA — CONTACT FORM
+   ============================================================ */
+.cta-form{
+  margin: var(--space-lg) auto 0;
+  max-width: 560px;
+  text-align: left;
+  background: rgba(247,245,239,0.06);
+  border: 1px solid rgba(247,245,239,0.16);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+}
+.cta-form .form-row{ margin-bottom: 1.15rem; }
+.cta-form .form-row:last-of-type{ margin-bottom: 0; }
+.cta-form label{
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(247,245,239,0.85);
+  margin-bottom: 0.4rem;
+}
+.cta-form input,
+.cta-form select,
+.cta-form textarea{
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: var(--color-white);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+.cta-form textarea{ resize: vertical; min-height: 80px; }
+.cta-form input:focus,
+.cta-form select:focus,
+.cta-form textarea:focus{ outline: 2px solid var(--color-accent); outline-offset: 1px; }
+.cta-form .form-error{
+  margin: 0 0 1.1rem;
+  font-size: 0.85rem;
+  color: #F3B7A6;
+  display: none;
+}
+.cta-form .form-error.is-visible{ display: block; }
+.final-cta-actions .btn[type="button"]{ border: none; }
 </style>
+
 </head>
 <body>
 
@@ -948,6 +1144,16 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
     </nav>
 
     <div class="nav-cta">
+      <div class="nav-quick-contact">
+        <!-- SOCIAL_PLACEHOLDER: replace with the client's real Instagram URL -->
+        <a class="quick-contact-btn" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer" aria-label="Message us on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33Zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3.1 3.1 0 0 0-.73-1.13 3.1 3.1 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.23-.06-1.58-.07-4.73-.07Zm0 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1.8a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Zm5.7-1.97a1.29 1.29 0 1 1-2.58 0 1.29 1.29 0 0 1 2.58 0Z"/></svg>
+        </a>
+        <!-- WHATSAPP_NUMBER_PLACEHOLDER: replace 91XXXXXXXXXX with the coach's real WhatsApp number (country code, no + or spaces) -->
+        <a class="quick-contact-btn nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.24A9.96 9.96 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.15c-1.6 0-3.13-.43-4.46-1.24l-.32-.19-3.12.74.74-3.04-.21-.32A8.14 8.14 0 0 1 3.85 12c0-4.5 3.66-8.16 8.16-8.16S20.17 7.5 20.17 12s-3.66 8.15-8.16 8.15Zm4.48-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+        </a>
+      </div>
       <a href="#enroll" class="btn btn-primary">Start Your Journey</a>
       <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
@@ -961,6 +1167,14 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       <a href="#method">The Method</a>
       <a href="#results">Results</a>
       <a href="#faq">FAQ</a>
+      <div class="quick-contact-row">
+        <a class="quick-contact-btn" href="https://instagram.com/INSTAGRAM_HANDLE_PLACEHOLDER" target="_blank" rel="noopener noreferrer" aria-label="Message us on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.43.4a4.9 4.9 0 0 1 1.77 1.15 4.9 4.9 0 0 1 1.15 1.77c.16.46.35 1.26.4 2.43.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.4 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.46.16-1.26.35-2.43.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.43-.4a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.16-.46-.35-1.26-.4-2.43C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.24-1.97.4-2.43a4.9 4.9 0 0 1 1.15-1.77A4.9 4.9 0 0 1 5.59 1.8c.46-.16 1.26-.35 2.43-.4C9.29 1.34 9.67 1.33 12 1.33Zm0 1.8c-3.15 0-3.5.01-4.73.07-.96.04-1.48.2-1.83.34-.46.18-.79.39-1.13.73-.34.34-.55.67-.73 1.13-.14.35-.3.87-.34 1.83-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.04.96.2 1.48.34 1.83.18.46.39.79.73 1.13.34.34.67.55 1.13.73.35.14.87.3 1.83.34 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c.96-.04 1.48-.2 1.83-.34.46-.18.79-.39 1.13-.73.34-.34.55-.67.73-1.13.14-.35.3-.87.34-1.83.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.04-.96-.2-1.48-.34-1.83a3.1 3.1 0 0 0-.73-1.13 3.1 3.1 0 0 0-1.13-.73c-.35-.14-.87-.3-1.83-.34-1.23-.06-1.58-.07-4.73-.07Zm0 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 1.8a3.7 3.7 0 1 0 0 7.4 3.7 3.7 0 0 0 0-7.4Zm5.7-1.97a1.29 1.29 0 1 1-2.58 0 1.29 1.29 0 0 1 2.58 0Z"/></svg>
+        </a>
+        <a class="quick-contact-btn nav-whatsapp-link" href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20your%20fasting%20course%20and%20would%20like%20to%20know%20more." target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.44 1.27 4.89L2 22l5.25-1.24A9.96 9.96 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10Zm0 18.15c-1.6 0-3.13-.43-4.46-1.24l-.32-.19-3.12.74.74-3.04-.21-.32A8.14 8.14 0 0 1 3.85 12c0-4.5 3.66-8.16 8.16-8.16S20.17 7.5 20.17 12s-3.66 8.15-8.16 8.15Zm4.48-6.12c-.24-.12-1.44-.71-1.66-.79-.22-.08-.38-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.53.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28Z"/></svg>
+        </a>
+      </div>
       <a href="#enroll" class="btn btn-primary">Start Your Journey</a>
     </div>
   </div>
@@ -969,9 +1183,23 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
 <main id="top">
 
   <!-- ============================================================
-       HERO
+       1. HERO  (existing copy/design preserved — slideshow added)
        ============================================================ -->
   <section class="hero">
+    <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true">
+      <div class="slide" style="background-image:url('images/fasting/fasting-01.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-02.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-03.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-04.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-05.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-06.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-07.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-08.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-09.jpg')"></div>
+      <div class="slide" style="background-image:url('images/fasting/fasting-10.jpg')"></div>
+      <div class="hero-overlay"></div>
+    </div>
+
     <div class="container hero-grid">
       <div class="hero-copy reveal">
         <span class="eyebrow">Structured Fasting • Weight Management</span>
@@ -991,26 +1219,35 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
         <p class="hero-trust">Education · Structure · Guidance</p>
       </div>
 
-      <div class="hero-media reveal">
-        <div class="video-frame" id="hero-video" role="button" tabindex="0" aria-label="Play 60 second introduction video">
-          <!-- VIDEO_PLACEHOLDER: replace this entire .video-frame block with a <video> or embed element -->
-          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=60" alt="Placeholder — replace with real intro video thumbnail" loading="lazy">
-          <span class="video-label">60-Second Intro</span>
-          <span class="play-btn" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 3.5v15l14-7.5-14-7.5z" fill="#123C32"/></svg>
-          </span>
-        </div>
+      <div class="video-frame reveal" id="hero-video" role="button" tabindex="0" aria-label="Play 60 second introduction video">
+        <!-- VIDEO_PLACEHOLDER: replace this entire .video-frame block with a <video> or embed element -->
+        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=60" alt="Placeholder — replace with real intro video thumbnail" loading="lazy">
+        <span class="video-label">60-Second Intro</span>
+        <span class="play-btn" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 3.5v15l14-7.5-14-7.5z" fill="#123C32"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
 
-        <!-- SOCIAL_PLACEHOLDER: replace hrefs with your real Instagram profile and WhatsApp number -->
-        <div class="hero-social">
-          <a href="https://www.instagram.com/svr_fasting_journal?stkn=MW96ZXlqeDZzOXQ4bw==" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Message us on Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
-            Instagram
-          </a>
-          <a href="https://wa.me/917680812020" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.01 2C6.48 2 2 6.48 2 12c0 1.77.47 3.45 1.28 4.9L2 22l5.25-1.25A9.94 9.94 0 0012.01 22C17.53 22 22 17.52 22 12S17.53 2 12.01 2zm5.3 14.2c-.23.63-1.32 1.22-1.83 1.28-.47.06-1.02.09-1.65-.1-.38-.12-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.23.55.77 1.9.84 2.03.07.14.12.3.02.48-.09.18-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.2 1.37.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.2.5.31.07.12.07.66-.16 1.28z"/></svg>
-            WhatsApp
-          </a>
+  <!-- ============================================================
+       2. INTRO VIDEO  (replaces the old "Verified Transformation
+          Result" module — new dedicated section)
+       ============================================================ -->
+  <section class="intro-video-section" id="intro-video">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Start Here</span>
+        <h2>Start Here: Understand the Fasting Method</h2>
+        <p>Watch this short introduction to understand the method, what you'll learn, and how to build a fasting routine with confidence.</p>
+      </div>
+
+      <div class="intro-video-wrap reveal">
+        <div class="intro-video-player">
+          <video controls playsinline preload="metadata">
+            <source src="videos/intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </div>
@@ -1019,7 +1256,46 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   <div class="divider"></div>
 
   <!-- ============================================================
-       PROBLEM / AUDIENCE
+       3. MEET YOUR MENTOR  (was "Meet Your Coach")
+       ============================================================ -->
+  <section class="coach" id="mentor">
+    <div class="container coach-grid">
+      <div class="mentor-photo reveal">
+        <!-- Replace images/coach.jpg with the real mentor photo -->
+        <img src="images/coach.jpg" alt="[COACH NAME], your fasting mentor" loading="lazy">
+      </div>
+
+      <div class="coach-copy reveal">
+        <span class="eyebrow">Meet Your Mentor</span>
+        <h2>Before you start, meet your mentor.</h2>
+        <p class="signature">I'm [COACH NAME].</p>
+        <p>Through this program, I help people understand fasting and develop a structured approach to their weight-management journey.</p>
+
+        <div class="coach-stats">
+          <div>
+            <div class="stat-num">[X]+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div>
+            <div class="stat-num">[X]+</div>
+            <div class="stat-label">People Guided</div>
+          </div>
+          <div>
+            <div class="stat-num">[Certification]</div>
+            <div class="stat-label">Credential</div>
+          </div>
+          <div>
+            <div class="stat-num">[Focus Area]</div>
+            <div class="stat-label">Area of Expertise</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       Is This For You?  (existing "problem" module — kept as
+       supporting context ahead of the Advantages section)
        ============================================================ -->
   <section class="problem" id="about">
     <div class="container">
@@ -1057,14 +1333,81 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   </section>
 
   <!-- ============================================================
-       THE METHOD
+       4. CLINICAL FASTING ADVANTAGES  (was "Why This Program" —
+          same card design, softened claims, no guarantees)
+       ============================================================ -->
+  <section class="why" id="advantages">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Clinical Fasting Advantages</span>
+        <h2>Transformative Physiological Benefits</h2>
+        <p>Reverse chronic digestive friction, burn deep fat reserves, and restore metabolic flexibility without harmful crash diets or expensive supplements.</p>
+      </div>
+
+      <div class="why-grid reveal">
+        <div class="why-item">
+          <span class="w-num">01</span>
+          <h3>Digestive Rest</h3>
+          <p>Give your digestive system a genuine period of rest between meals instead of constant grazing.</p>
+        </div>
+        <div class="why-item">
+          <span class="w-num">02</span>
+          <h3>Metabolic Flexibility</h3>
+          <p>Support your body's ability to shift between using food and stored energy for fuel.</p>
+        </div>
+        <div class="why-item">
+          <span class="w-num">03</span>
+          <h3>Sustainable Structure</h3>
+          <p>Build a routine you can realistically maintain, without crash diets or expensive supplements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. EATING WINDOW | FASTING WINDOW
+       ============================================================ -->
+  <section class="windows" id="windows">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Your Daily Rhythm</span>
+        <h2>Eating Window &amp; Fasting Window</h2>
+        <p>A simple structure to build your day around — nourishment during the day, rest for your digestive system overnight.</p>
+      </div>
+
+      <div class="windows-grid reveal">
+        <div class="window-card">
+          <div class="window-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C6A96B" stroke-width="1.6"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Eating Window</h3>
+          <span class="window-time">9:00 AM – 9:00 PM</span>
+          <p>Your nourishment period. Meals are structured within this window so your body gets consistent fuel while keeping a clear daily rhythm.</p>
+        </div>
+
+        <div class="window-card">
+          <div class="window-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C6A96B" stroke-width="1.6"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.6 6.6 0 0 0 10.5 10.5Z"/></svg>
+          </div>
+          <h3>Fasting Window</h3>
+          <span class="window-time">9:00 PM – 9:00 AM</span>
+          <p>Your rest period. Digestion slows, food intake pauses, and your body has uninterrupted time to recover before the next eating window begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       6. THE METHOD / WHAT YOU'LL LEARN
        ============================================================ -->
   <section class="method" id="method">
     <div class="container">
       <div class="method-intro">
         <div class="reveal">
           <span class="eyebrow">The Curriculum</span>
-          <h2>Fasting, with a structure.</h2>
+          <h2>The Method: What You'll Learn</h2>
         </div>
         <p class="reveal">Instead of following random fasting schedules from the internet, learn the fundamentals, understand your routine, and build an approach you can actually follow.</p>
       </div>
@@ -1072,26 +1415,21 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       <ol class="timeline reveal">
         <li class="timeline-item">
           <span class="t-num">01</span>
-          <h3>Fasting Fundamentals</h3>
+          <h3>Understanding Fasting</h3>
           <p>Understand the principles behind fasting and the different fasting approaches available to you.</p>
         </li>
         <li class="timeline-item">
           <span class="t-num">02</span>
-          <h3>Getting Started</h3>
-          <p>Learn how to approach fasting as a beginner, at a pace that fits your body and schedule.</p>
+          <h3>Choosing Your Fasting Window</h3>
+          <p>Learn how to choose an eating and fasting window that realistically fits your schedule and lifestyle.</p>
         </li>
         <li class="timeline-item">
           <span class="t-num">03</span>
-          <h3>Building Your Routine</h3>
-          <p>Create a structured routine that fits realistically into your lifestyle and commitments.</p>
+          <h3>Building Your Daily Routine</h3>
+          <p>Create a structured daily routine that fits realistically into your lifestyle and commitments.</p>
         </li>
         <li class="timeline-item">
           <span class="t-num">04</span>
-          <h3>Food &amp; Eating Windows</h3>
-          <p>Understand how eating patterns fit around fasting, without unnecessary restriction.</p>
-        </li>
-        <li class="timeline-item">
-          <span class="t-num">05</span>
           <h3>Staying Consistent</h3>
           <p>Learn practical strategies for maintaining your routine through everyday life.</p>
         </li>
@@ -1099,143 +1437,9 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
     </div>
   </section>
 
-  <div class="divider"></div>
-
   <!-- ============================================================
-       COACH / INTRO VIDEO
-       ============================================================ -->
-  <section class="coach" id="coach">
-  <div class="container coach-grid">
-
-    <div class="coach-video reveal">
-      <img src="images/coach.jpg" alt="Vineeth Reddy">
-    </div>
-
-      <div class="coach-copy reveal">
-        <span class="eyebrow">Meet Your Coach</span>
-        <h2>Before you start, meet your coach.</h2>
-        <p class="signature">I'm Vineeth Reddy.</p>
-        <p>Through this program, I help people understand fasting and develop a structured approach to their weight-management journey.</p>
-
-        <div class="coach-stats">
-          <div>
-            <div class="stat-num">3+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div>
-            <div class="stat-num">20+</div>
-            <div class="stat-label">People Guided</div>
-          </div>
-          <div>
-            <div class="stat-num">[Certification]</div>
-            <div class="stat-label">Credential</div>
-          </div>
-          <div>
-            <div class="stat-num">Weigth loss</div>
-            <div class="stat-label">Area of Expertise</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       RESULTS / TESTIMONIALS
-       ============================================================ -->
-  <section class="results" id="results">
-    <div class="container">
-      <div class="section-head center reveal">
-        <span class="eyebrow">Social Proof</span>
-        <h2>Real people. Real progress.</h2>
-        <p>A look at how others have approached their own fasting routines through the program.</p>
-      </div>
-
-      <div class="testimonial-row reveal">
-        <div class="testimonial-card">
-          <span class="quote-mark" aria-hidden="true">“</span>
-          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
-          <div class="testimonial-meta">
-            <div class="avatar-placeholder" aria-hidden="true"></div>
-            <div>
-              <div class="name">Client Name</div>
-              <div class="detail">Age (optional) · Result (optional)</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <span class="quote-mark" aria-hidden="true">“</span>
-          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
-          <div class="testimonial-meta">
-            <div class="avatar-placeholder" aria-hidden="true"></div>
-            <div>
-              <div class="name">Client Name</div>
-              <div class="detail">Age (optional) · Result (optional)</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-card">
-          <span class="quote-mark" aria-hidden="true">“</span>
-          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
-          <div class="testimonial-meta">
-            <div class="avatar-placeholder" aria-hidden="true"></div>
-            <div>
-              <div class="name">Client Name</div>
-              <div class="detail">Age (optional) · Result (optional)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="before-after reveal">
-        <div class="ba-frame">
-          <span class="tag">Before</span>
-          <span><!-- BEFORE IMAGE — replace with real client image -->Before Image</span>
-        </div>
-        <div class="ba-frame">
-          <span class="tag">After</span>
-          <span><!-- AFTER IMAGE — replace with real client image -->After Image</span>
-        </div>
-      </div>
-
-      <p class="results-disclaimer">Individual results vary. Results are not guaranteed.</p>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       WHY THIS PROGRAM
-       ============================================================ -->
-  <section class="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Why This Program</span>
-        <h2>More than a fasting schedule.</h2>
-        <p>Random advice online tells you what to do. This program helps you understand why, so you can adapt it to your own life.</p>
-      </div>
-
-      <div class="why-grid reveal">
-        <div class="why-item">
-          <span class="w-num">01</span>
-          <h3>Learn</h3>
-          <p>Understand the principles rather than blindly following instructions.</p>
-        </div>
-        <div class="why-item">
-          <span class="w-num">02</span>
-          <h3>Structure</h3>
-          <p>Build a routine with clear, sequential guidance from start to finish.</p>
-        </div>
-        <div class="why-item">
-          <span class="w-num">03</span>
-          <h3>Consistency</h3>
-          <p>Develop habits you can realistically maintain well beyond the course.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       HOW IT WORKS
+       Getting Started  (existing "how it works" module — kept
+       as a bonus step-by-step recap after the Method)
        ============================================================ -->
   <section class="how">
     <div class="container">
@@ -1265,6 +1469,72 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       <div class="how-cta reveal">
         <a href="#enroll" class="btn btn-primary">Start My Journey →</a>
       </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       7. REAL PEOPLE / RESULTS
+       ============================================================ -->
+  <section class="results" id="results">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Social Proof</span>
+        <h2>Real people. Real progress.</h2>
+        <p>A look at how others have approached their own fasting routines through the program.</p>
+      </div>
+
+      <div class="testimonial-row reveal">
+        <div class="testimonial-card">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
+          <div class="testimonial-meta">
+            <img class="avatar-placeholder" src="images/client-01.jpg" alt="" loading="lazy">
+            <div>
+              <div class="name">Client Name</div>
+              <div class="detail">Age (optional) · Result (optional)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
+          <div class="testimonial-meta">
+            <img class="avatar-placeholder" src="images/client-02.jpg" alt="" loading="lazy">
+            <div>
+              <div class="name">Client Name</div>
+              <div class="detail">Age (optional) · Result (optional)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p class="quote">[CLIENT TESTIMONIAL GOES HERE]</p>
+          <div class="testimonial-meta">
+            <img class="avatar-placeholder" src="images/client-03.jpg" alt="" loading="lazy">
+            <div>
+              <div class="name">Client Name</div>
+              <div class="detail">Age (optional) · Result (optional)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="before-after reveal">
+        <div class="ba-frame">
+          <span class="tag">Before</span>
+          <img src="images/before-01.jpg" alt="Before" loading="lazy">
+        </div>
+        <div class="ba-frame">
+          <span class="tag">After</span>
+          <img src="images/after-01.jpg" alt="After" loading="lazy">
+        </div>
+      </div>
+
+      <p class="results-disclaimer">Individual results vary. Results are not guaranteed.</p>
     </div>
   </section>
 
@@ -1365,37 +1635,60 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
       </div>
     </div>
   </section>
-<!-- ============================================================
-     FINAL CTA
-     ============================================================ -->
-<section class="final-cta" id="enroll">
-  <div class="container-narrow">
-    <div class="reveal">
-      <h2>Ready to start your fasting journey?</h2>
-      <p>Learn the method. Build your routine. Move forward with a clearer understanding of fasting.</p>
 
-      <div class="final-cta-actions">
+  <!-- ============================================================
+       FINAL CTA
+       ============================================================ -->
+  <section class="final-cta" id="enroll">
+    <div class="container-narrow">
+      <div class="reveal">
+        <h2>Ready to start your fasting journey?</h2>
+        <p>Learn the method. Build your routine. Move forward with a clearer understanding of fasting.</p>
 
-        <!-- WhatsApp: replace 919876543210 with the coach's WhatsApp number -->
-        <a
-          href="https://wa.me/917680812020?text=Hi%20Vineeth%2C%20I%E2%80%99m%20interested%20in%20joining%20your%20fasting%20course.%20I%E2%80%99d%20like%20to%20know%20more%20about%20the%20course%2C%20enrollment%20process%2C%20and%20how%20I%20can%20get%20started.%20Thank%20you%21"
-          class="btn btn-on-dark"
-          target="_blank"
-          rel="noopener"
-        >
-          Start the Course →
-        </a>
+        <form class="cta-form" id="ctaForm" novalidate>
+          <p class="form-error" id="ctaFormError">Please fill in your name, WhatsApp number, and primary goal before continuing.</p>
 
-        <a href="#contact" class="secondary">
-          Have questions? Contact us
-        </a>
+          <div class="form-row">
+            <label for="ctaName">Full Name *</label>
+            <input type="text" id="ctaName" name="ctaName" autocomplete="name" required>
+          </div>
 
+          <div class="form-row">
+            <label for="ctaWhatsapp">WhatsApp Number *</label>
+            <input type="tel" id="ctaWhatsapp" name="ctaWhatsapp" autocomplete="tel" placeholder="e.g. 9876543210" required>
+          </div>
+
+          <div class="form-row">
+            <label for="ctaWeight">Current Weight (KG)</label>
+            <input type="text" id="ctaWeight" name="ctaWeight" placeholder="Optional">
+          </div>
+
+          <div class="form-row">
+            <label for="ctaGoal">Primary Goal *</label>
+            <select id="ctaGoal" name="ctaGoal" required>
+              <option value="" disabled selected>Select your goal</option>
+              <option value="Weight Management">Weight Management</option>
+              <option value="Better Fasting Routine">Better Fasting Routine</option>
+              <option value="Digestive Wellness">Digestive Wellness</option>
+              <option value="General Fasting Guidance">General Fasting Guidance</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="ctaNotes">Additional Questions / Notes</label>
+            <textarea id="ctaNotes" name="ctaNotes" placeholder="Optional"></textarea>
+          </div>
+        </form>
+
+        <div class="final-cta-actions">
+          <button type="button" class="btn btn-on-dark" id="ctaSubmitBtn">Start the Course →</button>
+          <a href="#contact" class="secondary">Have questions? Contact us</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
 </main>
 
@@ -1523,6 +1816,119 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Hero background slideshow (Hero section only) ---------- */
+  var heroSection = document.querySelector('.hero');
+  var heroSlideshow = document.getElementById('heroSlideshow');
+  if(heroSection && heroSlideshow){
+    var slides = Array.prototype.slice.call(heroSlideshow.querySelectorAll('.slide'));
+    var heroReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Preload all hero images so transitions never show a blank/white flash
+    slides.forEach(function(slide){
+      var match = slide.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+      if(match && match[1]){
+        var preloadImg = new Image();
+        preloadImg.src = match[1];
+      }
+    });
+
+    if(heroReduceMotion || slides.length === 0){
+      // Reduced motion: show a single static image, no animation
+      if(slides[0]){
+        slides[0].classList.add('is-active', 'is-static');
+      }
+    } else {
+      var currentSlide = 0;
+      slides[currentSlide].classList.add('is-active');
+
+      var HERO_SLIDE_DURATION = 3800;  // ~3.8s visible per image
+      var heroTimer = null;
+      var heroPaused = false;
+
+      function showNextHeroSlide(){
+        if(heroPaused) return;
+        var prevSlide = currentSlide;
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('is-active');
+        slides[prevSlide].classList.remove('is-active');
+      }
+
+      function startHeroSlideshow(){
+        if(heroTimer) return;
+        heroTimer = window.setInterval(showNextHeroSlide, HERO_SLIDE_DURATION);
+      }
+      function stopHeroSlideshow(){
+        if(heroTimer){ window.clearInterval(heroTimer); heroTimer = null; }
+      }
+
+      startHeroSlideshow();
+
+      // Pause the slideshow once the hero has scrolled out of view (also
+      // guarantees the background images are never visible in other sections)
+      if('IntersectionObserver' in window){
+        var heroObserver = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            heroPaused = !entry.isIntersecting;
+            if(heroPaused){ stopHeroSlideshow(); }
+            else{ startHeroSlideshow(); }
+          });
+        }, { threshold: 0.05 });
+        heroObserver.observe(heroSection);
+      }
+
+      document.addEventListener('visibilitychange', function(){
+        if(document.hidden){ stopHeroSlideshow(); }
+        else if(!heroPaused){ startHeroSlideshow(); }
+      });
+    }
+  }
+
+  /* ---------- Final CTA: build WhatsApp message from the form ---------- */
+  // COACH_WHATSAPP_PLACEHOLDER: replace with the coach's real WhatsApp number
+  // in international format, digits only, no + or spaces (e.g. "919876543210")
+  var COACH_WHATSAPP_NUMBER = "91XXXXXXXXXX";
+  var COACH_FIRST_NAME = "Vineeth";
+
+  var ctaForm = document.getElementById('ctaForm');
+  var ctaSubmitBtn = document.getElementById('ctaSubmitBtn');
+  var ctaFormError = document.getElementById('ctaFormError');
+
+  if(ctaForm && ctaSubmitBtn){
+    ctaSubmitBtn.addEventListener('click', function(){
+      var name = document.getElementById('ctaName').value.trim();
+      var whatsapp = document.getElementById('ctaWhatsapp').value.trim();
+      var weight = document.getElementById('ctaWeight').value.trim();
+      var goal = document.getElementById('ctaGoal').value.trim();
+      var notes = document.getElementById('ctaNotes').value.trim();
+
+      if(!name || !whatsapp || !goal){
+        ctaFormError.classList.add('is-visible');
+        return;
+      }
+      ctaFormError.classList.remove('is-visible');
+
+      var lines = [
+        "Hi " + COACH_FIRST_NAME + ",",
+        "",
+        "I\u2019m interested in joining your fasting course.",
+        "",
+        "Name: " + name,
+        "WhatsApp Number: " + whatsapp
+      ];
+      if(weight){ lines.push("Current Weight: " + weight + " KG"); }
+      lines.push("Goal: " + goal);
+      if(notes){ lines.push("Questions: " + notes); }
+      lines.push("", "Please share the next steps.");
+
+      var message = lines.join("\n");
+      var url = "https://wa.me/" + COACH_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+
+      // Form data is only used in-memory to build this URL — never stored
+      // in localStorage/sessionStorage and never sent to any server.
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
   }
 
 })();
