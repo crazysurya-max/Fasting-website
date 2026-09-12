@@ -433,6 +433,37 @@ a:focus-visible, button:focus-visible{
 .video-frame:hover .play-btn{ transform: translate(-50%,-50%) scale(1.08); background: var(--color-white); }
 .play-btn svg{ margin-left: 4px; }
 
+/* Wrapper so the video + social buttons move together as one hero column */
+.hero-media{ display: flex; flex-direction: column; gap: 1rem; }
+
+/* Instagram / WhatsApp buttons below the intro video */
+.hero-social{
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+.social-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 100px;
+  border: 1px solid rgba(23,32,28,0.15);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-white);
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.social-btn:hover{
+  border-color: var(--color-primary);
+  background: rgba(18,60,50,0.04);
+  transform: translateY(-1px);
+}
+.social-btn svg{ flex-shrink: 0; }
+.social-btn.whatsapp:hover{ border-color: #25D366; }
+.social-btn.instagram:hover{ border-color: #C6A96B; }
+
 /* ============================================================
    PROBLEM SECTION
    ============================================================ */
@@ -864,7 +895,7 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
    ============================================================ */
 @media (max-width: 1024px){
   .hero-grid{ grid-template-columns: 1fr; }
-  .video-frame{ order: -1; }
+  .hero-media{ order: -1; }
   .problem-layout{ grid-template-columns: 1fr; gap: 2.5rem; }
   .method-intro{ grid-template-columns: 1fr; gap: 1.25rem; }
   .coach-grid{ grid-template-columns: 1fr; }
@@ -960,13 +991,27 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
         <p class="hero-trust">Education · Structure · Guidance</p>
       </div>
 
-      <div class="video-frame reveal" id="hero-video" role="button" tabindex="0" aria-label="Play 60 second introduction video">
-        <!-- VIDEO_PLACEHOLDER: replace this entire .video-frame block with a <video> or embed element -->
-        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=60" alt="Placeholder — replace with real intro video thumbnail" loading="lazy">
-        <span class="video-label">60-Second Intro</span>
-        <span class="play-btn" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 3.5v15l14-7.5-14-7.5z" fill="#123C32"/></svg>
-        </span>
+      <div class="hero-media reveal">
+        <div class="video-frame" id="hero-video" role="button" tabindex="0" aria-label="Play 60 second introduction video">
+          <!-- VIDEO_PLACEHOLDER: replace this entire .video-frame block with a <video> or embed element -->
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=60" alt="Placeholder — replace with real intro video thumbnail" loading="lazy">
+          <span class="video-label">60-Second Intro</span>
+          <span class="play-btn" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22"><path d="M6 3.5v15l14-7.5-14-7.5z" fill="#123C32"/></svg>
+          </span>
+        </div>
+
+        <!-- SOCIAL_PLACEHOLDER: replace hrefs with your real Instagram profile and WhatsApp number -->
+        <div class="hero-social">
+          <a href="SOCIAL_PLACEHOLDER_INSTAGRAM" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Message us on Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://wa.me/YOUR_PHONE_NUMBER" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.01 2C6.48 2 2 6.48 2 12c0 1.77.47 3.45 1.28 4.9L2 22l5.25-1.25A9.94 9.94 0 0012.01 22C17.53 22 22 17.52 22 12S17.53 2 12.01 2zm5.3 14.2c-.23.63-1.32 1.22-1.83 1.28-.47.06-1.02.09-1.65-.1-.38-.12-.87-.28-1.5-.55-2.64-1.14-4.36-3.8-4.5-3.98-.13-.18-1.08-1.43-1.08-2.73 0-1.3.68-1.93.92-2.2.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.6.46.23.55.77 1.9.84 2.03.07.14.12.3.02.48-.09.18-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.27.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.2 1.37.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.44.2.5.31.07.12.07.66-.16 1.28z"/></svg>
+            WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </section>
