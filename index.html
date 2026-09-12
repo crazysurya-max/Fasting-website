@@ -913,7 +913,7 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.78rem;
   font-weight: 700;
@@ -925,23 +925,54 @@ footer{ background: #0E251F; color: rgba(247,245,239,0.72); padding: var(--space
   white-space: nowrap;
   transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
-.quick-contact-link:hover{ background: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); transform: translateY(-2px); }
+
+/* Instagram & WhatsApp icons */
+.quick-contact-link i{
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.quick-contact-link:hover{
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
 .mobile-menu-inner .quick-contact-row{
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
-.mobile-menu-inner .quick-contact-row .quick-contact-link{ flex: 1 1 auto; justify-content: center; padding: 0.85rem 1.1rem; font-size: 0.85rem; }
+
+.mobile-menu-inner .quick-contact-row .quick-contact-link{
+  flex: 1 1 auto;
+  justify-content: center;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.85rem;
+}
 
 @media (max-width: 860px){
-  .nav-quick-contact{ margin-right: 0.25rem; }
-}
-@media (max-width: 480px){
-  .nav-quick-contact{ gap: 0.4rem; }
-  .quick-contact-link{ padding: 0.5rem 0.8rem; font-size: 0.7rem; }
+  .nav-quick-contact{
+    margin-right: 0.25rem;
+  }
 }
 
+@media (max-width: 480px){
+  .nav-quick-contact{
+    gap: 0.4rem;
+  }
+
+  .quick-contact-link{
+    padding: 0.5rem 0.8rem;
+    font-size: 0.7rem;
+  }
+
+  .quick-contact-link i{
+    font-size: 0.8rem;
+  }
+}
 /* ============================================================
    HERO SLIDESHOW (scoped strictly to .hero)
    ============================================================ */
